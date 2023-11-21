@@ -23,6 +23,21 @@
      ddclient
   ];
 
+  # Wait until dns is actually working, configuration is broken though so using another service to work around this.
+  # I beleive the issue is similar to this one:
+  # https://github.com/NixOS/nixpkgs/issues/232799
+  #systemd.services."ddclient".preStart =  [ "until host dns.techsupporter.net; do sleep 1; done;" ];
+
+  systemd.services.dnsready = {
+    after = [ "network.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'until host dns.server.techsupporter.net; do sleep 1; done'";
+    };
+  };
+
+  systemd.services.ddclient.after = [ "dnsready.service" ];
+
   services.adguardhome = {
     enable = true;
     mutableSettings = false;
