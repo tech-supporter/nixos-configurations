@@ -46,7 +46,8 @@
       users = [
         {
           name = "techsupporter";
-          passwordFile = "/secrets/passwords/adguardhome/techsupporter.txt";
+          # not a fan of this approach but there's no passwordFile option so this is about all I can do right now
+          password = (builtins.readFile "/secrets/passwords/adguardhome/techsupporter.txt");
         }
       ];
 
