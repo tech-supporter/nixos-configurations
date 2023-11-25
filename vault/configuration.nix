@@ -12,16 +12,14 @@
       ./network-configuration.nix
       ./base-configuration.nix
       ./server-configuration.nix
+      ./nfs-configuration.nix
     ];
 
   server-configuration.address = "10.0.0.3";
 
   networking.hostName = "vault";
 
-  fileSystems."/mnt/vault" = {
-    device = "storage.server.techsupporter.net:/vault";
-    fsType = "nfs";
-  };
+  nfs-configuration.path = "vault";
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
