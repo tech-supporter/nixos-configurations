@@ -7,13 +7,13 @@
   users.mutableUsers = false;
 
   users.users.root = {
-    passwordFile = "/secrets/passwords/root.txt";
+    hashedPasswordFile = "/secrets/passwords/root.txt";
   };
 
   users.users.techsupporter = {
     isNormalUser = true;
     extraGroups = [ "wheel" "power" "storage" ];
-    passwordFile = "/secrets/passwords/techsupporter.txt";
+    hashedPasswordFile = "/secrets/passwords/techsupporter.txt";
     openssh.authorizedKeys.keyFiles = [
       "/secrets/keys/ssh/public/techsupporter.key"
     ];

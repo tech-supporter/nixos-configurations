@@ -6,11 +6,17 @@
     type = lib.types.str;
   };
 
+  options.server-configuration.prefixLength = lib.mkOption
+  {
+    type = lib.types.int;
+    default = 8;
+  };
+
   config.networking.interfaces.eth0.ipv4.addresses =
   [
     {
       address = config.server-configuration.address;
-      prefixLength = 8;
+      prefixLength = config.server-configuration.prefixLength;
     }
   ];
 

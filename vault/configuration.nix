@@ -54,7 +54,7 @@
       SMTP_FROM_NAME = "VaultWarden";
       SMTP_SECURITY = "starttls"; # ("starttls", "force_tls", "off") Enable a secure connection. Default is "starttls" (Explicit - ports 587 or 25), "force_tls" (Implicit - port 465) or "off", no encryption (port 25)
       SMTP_PORT = 587;          # Ports 587 (submission) and 25 (smtp) are standard without encryption and with encryption via STARTTLS (Explicit TLS). Port 465 (submissions) is used for encrypted submission (Implicit TLS).
-      SMTP_USERNAME = "no-reply@techsupporter.net";e
+      SMTP_USERNAME = "no-reply@techsupporter.net";
       SMTP_PASSWORD = (builtins.readFile "/secrets/passwords/vaultwarden/email.txt");
       SMTP_TIMEOUT = 15;
     
@@ -66,7 +66,7 @@
   {
     enable = true;
 
-    package = pkgs.postgresql_14;
+    package = pkgs.postgresql_15;
 
     enableTCPIP = true;
     port = 5432;
@@ -87,6 +87,7 @@
       CREATE ROLE vaultwarden WITH LOGIN PASSWORD '${builtins.readFile "/secrets/passwords/postgresql/vaultwarden.txt"}' CREATEDB;
       CREATE DATABASE vaultwarden;
       GRANT ALL PRIVILEGES ON DATABASE vaultwarden TO vaultwarden;
+      ALTER DATABASE vaultwarden OWNER TO vaultwarden;
     '';
   };
 
@@ -101,5 +102,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  config.system.stateVersion = "23.05"; # Did you read the comment?
+  config.system.stateVersion = "23.11"; # Did you read the comment?
 }
