@@ -20,25 +20,31 @@
   config.networking.hostName = "vault";
   config.networking.firewall.allowedTCPPorts = [ 80 ];
 
-  config.nfs-configuration.path = "vault";
+  config.nfs-configuration.paths = [ "vault" ];
   config.nfs-configuration.storageUsers = 
   [
     "vaultwarden"
     "postgres"
   ];
 
+  config.users.users.vaultwarden.uid = 70;
+  config.users.users.postgres.uid = 71;
+
+  config.users.groups.vaultwarden.gid = 70;
+  config.users.groups.postgres.gid = 71;
+
   config.environment.systemPackages = with pkgs; [
     vaultwarden-postgresql
     postgresql
   ];
 
-  config.services.vaultwarden = 
+  config.services.vaultwarden =
   {
     enable = true;
     dbBackend = "postgresql";
     config = 
     {
-      DATA_FOLDER = "/mnt/nfs/vaultwarden/data";
+      DATA_FOLDER = "/mnt/nfs/vault/vaultwarden/data";
       DATABASE_URL = "postgresql://vaultwarden:${builtins.readFile "/secrets/passwords/postgresql/vaultwarden.txt"}@127.0.0.1:5432/vaultwarden";
       WEB_VAULT_ENABLED = true;
 
@@ -71,7 +77,7 @@
     enableTCPIP = true;
     port = 5432;
 
-    dataDir = "/mnt/nfs/postgresql/${config.services.postgresql.package.psqlSchema}";
+    dataDir = "/mnt/nfs/vault/postgresql/${config.services.postgresql.package.psqlSchema}";
     ensureDatabases = [ "vaultwarden" ];
 
     authentication = pkgs.lib.mkOverride 10 ''

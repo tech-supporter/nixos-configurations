@@ -45,6 +45,7 @@
         secret_key = builtins.readFile "/secrets/passwords/searx/server.txt";
       };
       ui = {
+        default_theme = "simple";
         theme_args = {
           simple_style = "dark";
         };

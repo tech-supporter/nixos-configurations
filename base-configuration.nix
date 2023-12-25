@@ -12,7 +12,7 @@
 
   users.users.techsupporter = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "power" "storage" ];
+    extraGroups = [ "wheel" "power" ];
     hashedPasswordFile = "/secrets/passwords/techsupporter.txt";
     openssh.authorizedKeys.keyFiles = [
       "/secrets/keys/ssh/public/techsupporter.key"
@@ -22,5 +22,7 @@
   environment.systemPackages = with pkgs; [
      vim
      git
+     htop
+     openssl
   ];
 }

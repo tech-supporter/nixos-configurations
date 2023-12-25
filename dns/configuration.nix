@@ -67,7 +67,7 @@
           { domain = "password.server.techsupporter.net"; answer = "10.0.0.3"; }
           { domain = "movies.server.techsupporter.net"; answer = "10.0.0.4"; }
           { domain = "shows.server.techsupporter.net"; answer = "10.0.0.4"; }
-          { domain = "jackett.server.techsupporter.net"; answer = "10.0.0.4"; }
+          { domain = "trackers.server.techsupporter.net"; answer = "10.0.0.4"; }
           { domain = "torrent.server.techsupporter.net"; answer = "10.0.0.4"; }
           { domain = "3dprinter.server.techsupporter.net"; answer = "10.0.0.5"; }
           { domain = "printer.server.techsupporter.net"; answer = "10.0.0.6"; }
@@ -80,6 +80,7 @@
           { domain = "vpn.server.techsupporter.net"; answer = "10.0.0.13"; }
           { domain = "search.server.techsupporter.net"; answer = "10.0.0.14"; }
           { domain = "dashboard.server.techsupporter.net"; answer = "10.0.0.14"; }
+          { domain = "peertube.server.techsupporter.net"; answer = "10.0.0.15"; }
           { domain = "backup.server.techsupporter.net"; answer = "backup.server.techsupporter.net"; }
           { domain = "vpn.techsupporter.net"; answer = "vpn.techsupporter.net"; }
           { domain = "mail.techsupporter.net"; answer = "mail.techsupporter.net"; }
@@ -147,6 +148,7 @@
           url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_31.txt";
           id = 1699461347;
         }
+
       ];
 
       filtering = {
@@ -200,7 +202,7 @@
         verbose = true;
         interval = "15min";     
 
-        passwordFile = "/secrets/passwords/ddclient/namecheap.txt";
+        passwordFile = "/secrets/passwords/ddclient/namecheap.txt";        
   };
 
 
