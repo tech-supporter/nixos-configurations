@@ -66,7 +66,7 @@
       adminpassFile = "/secrets/passwords/nextcloud/root.txt";
       overwriteProtocol = "https";
       trustedProxies = [ "10.0.0.8" ];
-      extraTrustedDomains = [ "cloud.techsupporter.net" "10.0.0.12" ];
+      extraTrustedDomains = [ "cloud.server.techsupporter.net" ];
     };
     extraOptions = {
       mail_from_address = "no-reply";
